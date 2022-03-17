@@ -1,0 +1,605 @@
+@import "./sass/mixins";
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: $background;
+  transition: 0.5s;
+  
+}
+
+.container.darkTheme {
+  .orderDetailes-Chart {
+    background: $D_body;
+  }
+  transition: 0.5s;
+  .navigation {
+    background: $D_blue;
+    border-left: 10px solid $D_blue;
+    li {
+      .title {
+        color: $D_links;
+      }
+      i {
+        color: $D_icons;
+      }
+      &:hover,
+      &.hovered {
+        background: $D_body;
+      }
+      &:hover::before,
+      &.hovered::before {
+        box-shadow: 35px 35px 0 10px $D_body;
+      }
+      &:hover::after,
+      &.hovered::after {
+        box-shadow: 35px -35px 0 10px $D_body;
+      }
+    }
+  }
+  .topbar {
+    background: $D_blue;
+    box-shadow: none;
+    .toggle {
+      color: $D_icons;
+    }
+    .search-container {
+      border: 1px solid $D_icons;
+      i {
+        color: $D_icons;
+      }
+      input {
+        color: $D_icons;
+      }
+    }
+  }
+  .report-boxes {
+    background: $D_body;
+    .box {
+      &:hover {
+        background: $blue;
+        .ion {
+          color: $box;
+        }
+        .preview {
+          color: $box;
+        }
+        .number {
+          color: $box;
+        }
+      }
+      .number {
+        color: $blue;
+      }
+      background: $D_blue;
+      box-shadow: none;
+      .ion {
+        color: $D_icons;
+      }
+      .preview {
+        color: $D_icons;
+      }
+    }
+  }
+  .orderDetailes {
+    background: $D_body;
+  }
+  .recentOrders {
+    .Head {
+      a {
+        background: none;
+        color: $blue;
+        box-shadow: none;
+      }
+    }
+    background: $D_blue;
+    box-shadow: none;
+    .table {
+      thead td {
+        color: $D_links;
+        font-weight: 400;
+      }
+      tbody tr {
+        color: $D_icons;
+        &:hover {
+          background: $D_body;
+          color: $D_links;
+          transition: 0.5s;
+        }
+      }
+    }
+  }
+  .recentCustomers {
+    background: $D_blue;
+    box-shadow: none;
+    table {
+      tr {
+        &:hover {
+          background: $D_body;
+          color: $D_links;
+          transition: 0.5s;
+        }
+      }
+    }
+    h4 {
+      color: $D_links;
+      font-weight: 400;
+      span {
+        color: $D_icons;
+      }
+    }
+  }
+}
+.navigation {
+  top: 0;
+  bottom: 0;
+  width: 70px;
+  height: 100%;
+  background: $blue;
+  position: fixed;
+  border-left: 10px solid $blue;
+  overflow: hidden;
+  transition: 0.5s;
+  ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    li {
+      width: 100%;
+      position: relative;
+      border-bottom-left-radius: 25px;
+      border-top-left-radius: 25px;
+      list-style: none;
+      &:nth-child(1) {
+        margin-bottom: 40px;
+        pointer-events: none;
+        margin-top: 10px;
+      }
+      a {
+        color: $box;
+        position: relative;
+        display: flex;
+        &:hover {
+          color: $blue;
+        }
+      }
+      i {
+        position: relative;
+        display: block;
+        min-width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+      }
+      .title {
+        position: relative;
+        display: block;
+        padding: 2px 10px;
+        height: 50px;
+        line-height: 50px;
+        text-align: start;
+        white-space: nowrap;
+      }
+      &:hover,
+      &.hovered {
+        background: $box;
+      }
+      &.hovered a {
+        color: $blue;
+      }
+      &:hover::before,
+      &.hovered::before {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        right: 0;
+        top: -50px;
+        background: transparent;
+        border-radius: 50%;
+        box-shadow: 35px 35px 0 10px $box;
+        pointer-events: none;
+      }
+      &:hover::after,
+      &.hovered::after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background: transparent;
+        right: 0;
+        border-radius: 50%;
+        box-shadow: 35px -35px 0 10px $box;
+        pointer-events: none;
+      }
+    }
+  }
+  &.hide {
+    width: 300px;
+  }
+}
+.main {
+  background-color: $background;
+  position: absolute;
+  width: calc(100% - 70px);
+  left: 70px;
+  height: 100%;
+  transition: 0.5s;
+  &.active {
+    width: calc(100% - 300px);
+    left: 300px;
+  }
+  .topbar {
+    width: 100%;
+    height: 60px;
+    @include space-between();
+    padding: 0 10px;
+    background: $box;
+    box-shadow: $shadow;
+    .toggle {
+      position: relative;
+      top: 0;
+      width: 60px;
+      height: 60px;
+      @include centerFlex();
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+    .search-container {
+      @include centerFlex();
+      position: relative;
+      width: 400px;
+      height: 30px;
+      border-radius: 15px;
+      border: 1px solid #222;
+      margin: 0 10px;
+      input {
+        width: calc(100% - 50px);
+        @include clearInput();
+        color: $lightBlack;
+      }
+      i {
+        padding-right: 10px;
+        padding-left: 10px;
+        cursor: pointer;
+      }
+    }
+    .admin {
+      @include circleFrame();
+      @include centerFlex();
+      margin-right: 10px;
+      img {
+        @include circlePhoto();
+      }
+    }
+  }
+}
+.report-boxes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+  width: 100%;
+  position: relative;
+  padding: 20px;
+
+  .box {
+    position: relative;
+    background: $box;
+    box-shadow: $shadow;
+    border-radius: 10px;
+    @include space-between();
+    cursor: pointer;
+    padding: 20px;
+    .ion {
+      color: $ion;
+      font-size: 3.2em;
+    }
+    &:hover {
+      background: $blue;
+      transition: 0.5s ease-in-out;
+    }
+    &:hover .ion,
+    &:hover .number,
+    &:hover .preview {
+      color: $box;
+    }
+  }
+  .num {
+    display: flex;
+    flex-direction: column;
+    .number {
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: $blue;
+    }
+    .preview {
+      font-size: 13px;
+      font-weight: 600;
+    }
+  }
+}
+.orderDetailes {
+  width: 100%;
+  padding: 15px 20px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  .recentOrders {
+    width: 100%;
+    position: relative;
+    display: grid;
+    min-height: 550px;
+    border-radius: 10px;
+    padding: 20px;
+    background: $box;
+    box-shadow: $shadow;
+    .Head {
+      @include space-between();
+      h2 {
+        color: $blue;
+      }
+      a {
+        color: $box;
+        background: $blue;
+        width: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        border-radius: 5px;
+        box-shadow: $shadow;
+      }
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      thead td {
+        font-size: 16px;
+        font-weight: 600;
+        padding: 5px;
+      }
+      tr {
+        border-bottom: $border;
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+      tbody {
+        td {
+          padding: 5px;
+        }
+        tr {
+          cursor: pointer;
+          color: $lightBlack;
+          font-weight: 500;
+          &:hover {
+            background: $blue;
+            color: $box;
+            font-weight: 500;
+            transition: 0.5s;
+          }
+        }
+      }
+      td {
+        white-space: nowrap;
+        &:nth-child(2),
+        &:nth-child(3) {
+          text-align: center;
+        }
+        &:nth-child(4) {
+          text-align: end;
+        }
+      }
+      .delivered {
+        @include status();
+        background: $green;
+      }
+      .pending {
+        @include status();
+        background: $yellow;
+      }
+      .return {
+        @include status();
+        background: $red;
+      }
+      .progress {
+        @include status();
+        background: $Blue;
+      }
+    }
+  }
+  .recentCustomers {
+    position: relative;
+    display: grid;
+    min-height: 550px;
+    border-radius: 10px;
+    padding: 20px;
+    background: $box;
+    box-shadow: $shadow;
+    .Head {
+      h2 {
+        color: $blue;
+      }
+    }
+    .img {
+      @include circleFrame();
+      img {
+        @include circlePhoto();
+      }
+    }
+    table {
+      tr {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        &:hover {
+          background: $blue;
+          color: $box;
+          transition: 0.5s;
+        }
+        h4 {
+          font-size: 16px;
+          line-height: 1.2em;
+          font-weight: 600;
+          letter-spacing: 1px;
+        }
+        span {
+          font-size: 14px;
+          color: $lightBlack;
+          font-weight: 500;
+        }
+        &:hover span {
+          color: $box;
+        }
+      }
+      td {
+        padding: 8px 10px;
+      }
+    }
+  }
+}
+.orderDetailes-Chart {
+  width: 100%;
+  padding: 15px 20px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  .recentOrders {
+    width: 100%;
+    position: relative;
+    height: 100%;
+    border-radius: 10px;
+    padding: 20px;
+    background: $box;
+    box-shadow: $shadow;
+    .Head {
+      @include space-between();
+      margin-bottom: 20px;
+      h2 {
+        color: $blue;
+      }
+      a {
+        font-size: 18px;
+        color: $blue;
+      }
+    }
+  }
+  .recentCustomers {
+    position: relative;
+    height: 100%;
+    border-radius: 10px;
+    padding: 20px;
+    background: $box;
+    box-shadow: $shadow;
+  }
+  .Head {
+    @include space-between();
+    margin-bottom: 20px;
+    h2 {
+      color: $blue;
+    }
+    a {
+      font-size: 18px;
+      color: $blue;
+    }
+  }
+}
+@media (max-width: 992px) {
+  body {
+    height: 142vh !important;
+  }
+  .navigation {
+    left: -70px;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .navigation.hide {
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+  .report-boxes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .orderDetailes-Chart{
+    grid-template-columns: 1fr;
+    .recentCustomers{
+      padding: 50px;
+    }
+  }
+  #doughnut{
+    padding: 50px;
+  }
+}
+@media (max-width: 768px) {
+  .orderDetailes {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .recentOrders {
+    overflow-x: auto;
+  }
+  
+}
+@media (max-width: 480px) {
+  body {
+    height: 240vh !important;
+  }
+  .Head h2 {
+    width: 14px;
+  }
+  .admin {
+    min-width: 40px;
+  }
+  .navigation.hide {
+    width: 100%;
+    left: 0;
+    z-index: 1000;
+    transition: 0.5s;
+  }
+  .navigation {
+    transition: 0.5s;
+  }
+  .main {
+    transition: 0.5s;
+  }
+  .main.active {
+    position: absolute;
+    left: -100%;
+    transition: 0.5s;
+  }
+  .toggle {
+    z-index: 1111;
+    opacity: 1;
+  }
+  .main.active {
+    position: absolute;
+  }
+  .main.active .toggle {
+    color: $background;
+    position: fixed;
+    right: 0;
+    left: inherit;
+  }
+  .report-boxes {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .orderDetailes-Chart{
+    .cg{
+      padding:10px 20px;
+    }
+    .recentCustomers{
+      height: 105% !important;
+      padding: 0;
+    }
+  }
+  #doughnut{
+    padding: 0;
+  }
+}
